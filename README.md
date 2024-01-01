@@ -1,5 +1,5 @@
 # flu-ens
-an approach for routing that checks a text record for a ed25519 peer id at the `fluence_project` (could be anything really) key value, and returns a greeting from that peer
+an approach for routing that checks an ens text record for a ed25519 peer id at the `fluence_project` (could be anything really) key value, and returns a greeting from that peer
 
 ## how to run
 
