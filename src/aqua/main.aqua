@@ -1,0 +1,30 @@
+aqua Main
+
+import "@fluencelabs/aqua-lib/builtin.aqua"
+import "@fluencelabs/aqua-lib/subnet.aqua"
+
+use "deals.aqua"
+use "hosts.aqua"
+import "services.aqua"
+
+-- IMPORTANT: Add exports for all functions that you want to run
+export routeGreet, ENSService, ERC721Service
+
+service ERC721Service("erc721Service"):
+    greet() -> string
+
+service ENSService("ensService"):
+    route(ens: string) -> PeerId
+
+func routeGreet(ens: string, peer: PeerId) -> string:
+
+    res: *string
+    device: *PeerId
+
+    on peer:
+        device <- ENSService.route(ens)
+
+    on device[0]:
+        res <- ERC721Service.greet()
+
+    <- res[0]
